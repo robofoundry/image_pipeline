@@ -127,6 +127,8 @@ def main():
     if (num_ks < 1):
         calib_flags |= cv2.CALIB_FIX_K1
 
+    fisheye_flags = 0
+
     pattern = Patterns.Chessboard
     if options.pattern == 'circles':
         pattern = Patterns.Circles
@@ -141,7 +143,7 @@ def main():
         checkerboard_flags = cv2.CALIB_CB_FAST_CHECK
 
     rclpy.init()
-    node = OpenCVCalibrationNode("cameracalibrator", boards, options.service_check, sync, calib_flags, pattern, options.camera_name,
+    node = OpenCVCalibrationNode("cameracalibrator", boards, options.service_check, sync, calib_flags, fisheye_flags, pattern, options.camera_name,
                                  checkerboard_flags=checkerboard_flags)
     node.spin()
 

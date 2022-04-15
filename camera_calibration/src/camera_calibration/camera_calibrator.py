@@ -76,7 +76,7 @@ class ConsumerThread(threading.Thread):
 
 
 class CalibrationNode(Node):
-    def __init__(self, name, boards, service_check = True, synchronizer = message_filters.TimeSynchronizer, flags = 0,
+    def __init__(self, name, boards, service_check = True, synchronizer = message_filters.TimeSynchronizer, flags = 0, fisheye_flags = 0,
                  pattern=Patterns.Chessboard, camera_name='', checkerboard_flags = 0,
                  max_chessboard_speed = -1):
         super().__init__(name)
@@ -219,7 +219,7 @@ class OpenCVCalibrationNode(CalibrationNode):
     FONT_THICKNESS = 2
 
     def __init__(self, *args, **kwargs):
-
+        #super(CalibrationNode, self).__init__(*args, **kwargs)
         CalibrationNode.__init__(self, *args, **kwargs)
 
         self.queue_display = deque([], 1)
